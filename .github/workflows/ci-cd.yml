@@ -91,6 +91,10 @@ jobs:
             --name ${{ vars.AKS_CLUSTER_NAME }} \
             --overwrite-existing
 
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace petclinic --dry-run=client -o yaml | kubectl apply -f -
+
       - name: Deploy to AKS
         run: |
           IMAGE_TAG=${{ vars.ACR_NAME }}.azurecr.io/${{ vars.IMAGE_NAME }}:${{ github.sha }}
@@ -144,6 +148,10 @@ jobs:
             --name ${{ vars.AKS_CLUSTER_NAME }} \
             --overwrite-existing
 
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace petclinic --dry-run=client -o yaml | kubectl apply -f -
+
       - name: Deploy to AKS
         run: |
           IMAGE_TAG=${{ vars.ACR_NAME }}.azurecr.io/${{ vars.IMAGE_NAME }}:${{ github.sha }}
@@ -196,6 +204,10 @@ jobs:
             --resource-group ${{ vars.RESOURCE_GROUP }} \
             --name ${{ vars.AKS_CLUSTER_NAME }} \
             --overwrite-existing
+
+      - name: Create namespace if not exists
+        run: |
+          kubectl create namespace petclinic --dry-run=client -o yaml | kubectl apply -f -
 
       - name: Deploy to AKS
         run: |
